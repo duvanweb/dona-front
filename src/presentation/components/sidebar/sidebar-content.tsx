@@ -1,4 +1,4 @@
-import { Home, Settings } from 'lucide-react'
+import { Home, Package, Settings } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
 import { SidebarNavLink } from './sidebar-nav-link'
 
@@ -15,6 +15,14 @@ export function SidebarContent({ onNavigate }: SidebarContentProps) {
       <ul className="flex flex-col gap-1">
         <li>
           <SidebarNavLink to="/" label="Inicio" icon={Home} onNavigate={onNavigate} />
+        </li>
+        <li>
+          <SidebarNavLink
+            to="/products"
+            label="Productos"
+            icon={Package}
+            onNavigate={onNavigate}
+          />
         </li>
         <li>
           <SidebarNavLink

@@ -1,0 +1,145 @@
+{
+  "common": {
+    "appName": "dona-front",
+    "cancel": "Cancel",
+    "optional": "(optional)",
+    "select": "Select...",
+    "language": "Language"
+  },
+  "nav": {
+    "openMenu": "Open side menu",
+    "section": "Navigation",
+    "home": "Home",
+    "products": "Products",
+    "settings": "Settings",
+    "sideMenu": "Side menu"
+  },
+  "theme": {
+    "toggle": "Toggle theme"
+  },
+  "home": {
+    "decrement": "Decrement",
+    "increment": "Increment",
+    "reset": "Reset",
+    "footer": "State managed with Zustand · shadcn/ui components"
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Application settings.",
+    "placeholder": "Sample content. Replace with real settings."
+  },
+  "notFound": {
+    "message": "Page not found.",
+    "back": "Back to home"
+  },
+  "products": {
+    "title": "Products",
+    "count_one": "{{count}} product registered.",
+    "count_other": "{{count}} products registered.",
+    "new": "New product",
+    "listTitle": "List",
+    "listDescription": "Products available for DIAN invoicing.",
+    "empty": "No products registered.",
+    "createFirst": "Create the first product",
+    "columns": {
+      "code": "Code",
+      "description": "Description",
+      "price": "Price",
+      "unit": "Unit",
+      "tax": "VAT"
+    },
+    "deleteAria": "Delete {{code}}",
+    "deleted": "Product deleted",
+    "deletedDescription": "Code {{code}}."
+  },
+  "productCreate": {
+    "title": "New product",
+    "subtitle": "Register the product with the fields required by DIAN electronic invoicing.",
+    "cardTitle": "Product details",
+    "cardDescription": "Fields marked with * are required."
+  },
+  "productForm": {
+    "code": "Code",
+    "codePlaceholder": "e.g. PROD-001",
+    "description": "Description",
+    "descriptionPlaceholder": "Product description",
+    "unitPrice": "Unit price",
+    "unitOfMeasure": "Unit of measure",
+    "taxCategory": "VAT category",
+    "standardCode": "Standard code (GTIN/EAN)",
+    "unspscCode": "UNSPSC code",
+    "unspscPlaceholder": "4 to 8 digits",
+    "brand": "Brand",
+    "model": "Model",
+    "discount": "Discount (%)",
+    "optionalPlaceholder": "Optional",
+    "submit": "Save product",
+    "created": "Product created",
+    "createdDescription": "Code {{code}} saved successfully."
+  },
+  "register": {
+    "title": "Create account",
+    "subtitle": "Register your company to start invoicing.",
+    "companyName": "Company name",
+    "companyNamePlaceholder": "e.g. Acme Inc.",
+    "email": "Email",
+    "emailPlaceholder": "name@company.com",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "passwordHint": "At least 8 characters, with uppercase, lowercase and a number.",
+    "submit": "Create account",
+    "success": "Account created",
+    "successDescription": "Welcome, {{company}}.",
+    "failure": "Could not create the account",
+    "unexpectedError": "Unexpected error",
+    "errors": {
+      "duplicateEmail": "An account with this email already exists"
+    }
+  },
+  "validation": {
+    "productCodeRequired": "Product code is required",
+    "descriptionRequired": "Description is required",
+    "unitPriceRequired": "Unit price is required",
+    "unitPricePositive": "Unit price must be greater than 0",
+    "discountMin": "Discount cannot be negative",
+    "discountMax": "Discount cannot exceed 100%",
+    "unspscFormat": "UNSPSC code must have 4 to 8 digits",
+    "unitOfMeasureRequired": "Select a unit of measure",
+    "taxCategoryRequired": "Select a tax category",
+    "companyNameRequired": "Company name is required",
+    "invalidEmail": "Invalid email address",
+    "passwordMin": "Password must be at least 8 characters",
+    "passwordUppercase": "Must include at least one uppercase letter",
+    "passwordLowercase": "Must include at least one lowercase letter",
+    "passwordNumber": "Must include at least one number",
+    "confirmPasswordRequired": "Confirm your password",
+    "passwordsMismatch": "Passwords do not match"
+  },
+  "dian": {
+    "units": {
+      "94": "Unit",
+      "KGM": "Kilogram",
+      "MTR": "Meter",
+      "LTR": "Liter",
+      "MTK": "Square meter",
+      "MTQ": "Cubic meter",
+      "HUR": "Hour",
+      "DAY": "Day",
+      "GRM": "Gram",
+      "TNE": "Tonne",
+      "SET": "Set",
+      "PR": "Pair",
+      "C62": "Centimeter",
+      "MMT": "Millimeter"
+    },
+    "tax": {
+      "01": "VAT 19% (standard rate)",
+      "02": "VAT 5% (reduced rate)",
+      "03": "VAT 0% (exempt)",
+      "04": "Not VAT liable (excluded)",
+      "05": "Not subject to VAT"
+    }
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "common": {
+    "appName": "dona-front",
+    "cancel": "Cancelar",
+    "optional": "(opcional)",
+    "select": "Seleccionar...",
+    "language": "Idioma"
+  },
+  "nav": {
+    "openMenu": "Abrir menú lateral",
+    "section": "Navegación",
+    "home": "Inicio",
+    "products": "Productos",
+    "settings": "Configuración",
+    "sideMenu": "Menú lateral"
+  },
+  "theme": {
+    "toggle": "Cambiar tema"
+  },
+  "home": {
+    "decrement": "Decrementar",
+    "increment": "Incrementar",
+    "reset": "Reiniciar",
+    "footer": "Estado gestionado con Zustand · Componentes de shadcn/ui"
+  },
+  "settings": {
+    "title": "Configuración",
+    "subtitle": "Ajustes de la aplicación.",
+    "placeholder": "Contenido de ejemplo. Reemplaza con ajustes reales."
+  },
+  "notFound": {
+    "message": "Página no encontrada.",
+    "back": "Volver al inicio"
+  },
+  "products": {
+    "title": "Productos",
+    "count_one": "{{count}} producto registrado.",
+    "count_other": "{{count}} productos registrados.",
+    "new": "Nuevo producto",
+    "listTitle": "Listado",
+    "listDescription": "Productos disponibles para facturación DIAN.",
+    "empty": "No hay productos registrados.",
+    "createFirst": "Crear el primer producto",
+    "columns": {
+      "code": "Código",
+      "description": "Descripción",
+      "price": "Precio",
+      "unit": "Unidad",
+      "tax": "IVA"
+    },
+    "deleteAria": "Eliminar {{code}}",
+    "deleted": "Producto eliminado",
+    "deletedDescription": "Código {{code}}."
+  },
+  "productCreate": {
+    "title": "Nuevo producto",
+    "subtitle": "Registre el producto con los campos requeridos por la facturación electrónica DIAN.",
+    "cardTitle": "Datos del producto",
+    "cardDescription": "Los campos marcados con * son obligatorios."
+  },
+  "productForm": {
+    "code": "Código",
+    "codePlaceholder": "Ej. PROD-001",
+    "description": "Descripción",
+    "descriptionPlaceholder": "Descripción del producto",
+    "unitPrice": "Precio unitario",
+    "unitOfMeasure": "Unidad de medida",
+    "taxCategory": "Categoría IVA",
+    "standardCode": "Código estándar (GTIN/EAN)",
+    "unspscCode": "Código UNSPSC",
+    "unspscPlaceholder": "4 a 8 dígitos",
+    "brand": "Marca",
+    "model": "Modelo",
+    "discount": "Descuento (%)",
+    "optionalPlaceholder": "Opcional",
+    "submit": "Guardar producto",
+    "created": "Producto creado",
+    "createdDescription": "Código {{code}} guardado correctamente."
+  },
+  "register": {
+    "title": "Crear cuenta",
+    "subtitle": "Registre su empresa para empezar a facturar.",
+    "companyName": "Nombre de la empresa",
+    "companyNamePlaceholder": "Ej. Acme S.A.S.",
+    "email": "Correo electrónico",
+    "emailPlaceholder": "nombre@empresa.com",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "showPassword": "Mostrar contraseña",
+    "hidePassword": "Ocultar contraseña",
+    "passwordHint": "Mínimo 8 caracteres, con mayúscula, minúscula y número.",
+    "submit": "Crear cuenta",
+    "success": "Cuenta creada",
+    "successDescription": "Bienvenido, {{company}}.",
+    "failure": "No se pudo crear la cuenta",
+    "unexpectedError": "Error inesperado",
+    "errors": {
+      "duplicateEmail": "Ya existe una cuenta con este correo"
+    }
+  },
+  "validation": {
+    "productCodeRequired": "El código del producto es requerido",
+    "descriptionRequired": "La descripción es requerida",
+    "unitPriceRequired": "El precio unitario es requerido",
+    "unitPricePositive": "El precio unitario debe ser mayor a 0",
+    "discountMin": "El descuento no puede ser negativo",
+    "discountMax": "El descuento no puede superar 100%",
+    "unspscFormat": "El código UNSPSC debe tener entre 4 y 8 dígitos",
+    "unitOfMeasureRequired": "Seleccione una unidad de medida",
+    "taxCategoryRequired": "Seleccione una categoría tributaria",
+    "companyNameRequired": "El nombre de la empresa es requerido",
+    "invalidEmail": "Correo electrónico inválido",
+    "passwordMin": "La contraseña debe tener al menos 8 caracteres",
+    "passwordUppercase": "Debe incluir al menos una letra mayúscula",
+    "passwordLowercase": "Debe incluir al menos una letra minúscula",
+    "passwordNumber": "Debe incluir al menos un número",
+    "confirmPasswordRequired": "Confirme la contraseña",
+    "passwordsMismatch": "Las contraseñas no coinciden"
+  },
+  "dian": {
+    "units": {
+      "94": "Unidad",
+      "KGM": "Kilogramo",
+      "MTR": "Metro",
+      "LTR": "Litro",
+      "MTK": "Metro cuadrado",
+      "MTQ": "Metro cúbico",
+      "HUR": "Hora",
+      "DAY": "Día",
+      "GRM": "Gramo",
+      "TNE": "Tonelada",
+      "SET": "Conjunto",
+      "PR": "Par",
+      "C62": "Centímetro",
+      "MMT": "Milímetro"
+    },
+    "tax": {
+      "01": "IVA 19% (tasa general)",
+      "02": "IVA 5% (tasa reducida)",
+      "03": "IVA 0% (exento)",
+      "04": "No responsable de IVA (excluido)",
+      "05": "No gravado con IVA"
+    }
+  }
+}

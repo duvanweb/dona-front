@@ -5,23 +5,24 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { useTranslation } from 'react-i18next'
 import { ProductForm } from '@/presentation/components/product-form/product-form'
 
 export function ProductCreatePage() {
+  const { t } = useTranslation()
   return (
     <div className="mx-auto max-w-3xl space-y-6">
       <div className="space-y-1">
-        <h1 className="text-2xl font-semibold tracking-tight">Nuevo producto</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">{t('productCreate.title')}</h1>
         <p className="text-sm text-muted-foreground">
-          Registre el producto con los campos requeridos por la facturación
-          electrónica DIAN.
+          {t('productCreate.subtitle')}
         </p>
       </div>
       <Card>
         <CardHeader>
-          <CardTitle>Datos del producto</CardTitle>
+          <CardTitle>{t('productCreate.cardTitle')}</CardTitle>
           <CardDescription>
-            Los campos marcados con * son obligatorios.
+            {t('productCreate.cardDescription')}
           </CardDescription>
         </CardHeader>
         <CardContent>

@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
+import { useTranslation } from 'react-i18next'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -22,13 +23,14 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import {
-  TAX_CATEGORIES,
-  UNIT_OF_MEASURES,
+  TAX_CATEGORY_CODES,
+  UNIT_OF_MEASURE_CODES,
 } from '@/domain/product/product.constants'
 import { productSchema, type ProductFormData } from '@/domain/product/product.schema'
 import { useProductStore } from '@/stores/use-product-store'
 
 export function ProductForm() {
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const addProduct = useProductStore((s) => s.addProduct)
 
@@ -51,8 +53,8 @@ export function ProductForm() {
 
   const onSubmit = form.handleSubmit((data) => {
     addProduct(data)
-    toast.success('Producto creado', {
-      description: `Código ${data.code} guardado correctamente.`,
+    toast.success(t('productForm.created'), {
+      description: t('productForm.createdDescription', { code: data.code }),
     })
     navigate('/products')
   })
@@ -67,9 +69,9 @@ export function ProductForm() {
             name="code"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Código <span className="text-destructive">*</span></FormLabel>
+                <FormLabel>{t('productForm.code')} <span className="text-destructive">*</span></FormLabel>
                 <FormControl>
-                  <Input placeholder="Ej. PROD-001" {...field} />
+                  <Input placeholder={t('productForm.codePlaceholder')} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -80,9 +82,9 @@ export function ProductForm() {
             name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Descripción <span className="text-destructive">*</span></FormLabel>
+                <FormLabel>{t('productForm.description')} <span className="text-destructive">*</span></FormLabel>
                 <FormControl>
-                  <Input placeholder="Descripción del producto" {...field} />
+                  <Input placeholder={t('productForm.descriptionPlaceholder')} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -97,7 +99,7 @@ export function ProductForm() {
             name="unitPrice"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Precio unitario <span className="text-destructive">*</span></FormLabel>
+                <FormLabel>{t('productForm.unitPrice')} <span className="text-destructive">*</span></FormLabel>
                 <FormControl>
                   <Input
                     type="number"
@@ -121,17 +123,17 @@ export function ProductForm() {
             name="unitOfMeasure"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Unidad de medida <span className="text-destructive">*</span></FormLabel>
+                <FormLabel>{t('productForm.unitOfMeasure')} <span className="text-destructive">*</span></FormLabel>
                 <Select value={field.value} onValueChange={field.onChange}>
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="Seleccionar..." />
+                      <SelectValue placeholder={t('common.select')} />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {UNIT_OF_MEASURES.map((u) => (
-                      <SelectItem key={u.code} value={u.code}>
-                        {u.label}
+                    {UNIT_OF_MEASURE_CODES.map((code) => (
+                      <SelectItem key={code} value={code}>
+                        {t(`dian.units.${code}`)}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -145,17 +147,17 @@ export function ProductForm() {
             name="taxCategory"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Categoría IVA <span className="text-destructive">*</span></FormLabel>
+                <FormLabel>{t('productForm.taxCategory')} <span className="text-destructive">*</span></FormLabel>
                 <Select value={field.value} onValueChange={field.onChange}>
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="Seleccionar..." />
+                      <SelectValue placeholder={t('common.select')} />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {TAX_CATEGORIES.map((t) => (
-                      <SelectItem key={t.code} value={t.code}>
-                        {t.label}
+                    {TAX_CATEGORY_CODES.map((code) => (
+                      <SelectItem key={code} value={code}>
+                        {t(`dian.tax.${code}`)}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -173,9 +175,9 @@ export function ProductForm() {
             name="standardCode"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Código estándar (GTIN/EAN) <OptionalMark /></FormLabel>
+                <FormLabel>{t('productForm.standardCode')} <OptionalMark /></FormLabel>
                 <FormControl>
-                  <Input placeholder="Opcional" {...field} />
+                  <Input placeholder={t('productForm.optionalPlaceholder')} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -186,9 +188,9 @@ export function ProductForm() {
             name="unspscCode"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Código UNSPSC <OptionalMark /></FormLabel>
+                <FormLabel>{t('productForm.unspscCode')} <OptionalMark /></FormLabel>
                 <FormControl>
-                  <Input placeholder="4 a 8 dígitos" inputMode="numeric" {...field} />
+                  <Input placeholder={t('productForm.unspscPlaceholder')} inputMode="numeric" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -199,9 +201,9 @@ export function ProductForm() {
             name="brand"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Marca <OptionalMark /></FormLabel>
+                <FormLabel>{t('productForm.brand')} <OptionalMark /></FormLabel>
                 <FormControl>
-                  <Input placeholder="Opcional" {...field} />
+                  <Input placeholder={t('productForm.optionalPlaceholder')} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -212,9 +214,9 @@ export function ProductForm() {
             name="model"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Modelo <OptionalMark /></FormLabel>
+                <FormLabel>{t('productForm.model')} <OptionalMark /></FormLabel>
                 <FormControl>
-                  <Input placeholder="Opcional" {...field} />
+                  <Input placeholder={t('productForm.optionalPlaceholder')} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -225,14 +227,14 @@ export function ProductForm() {
             name="discount"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Descuento (%) <OptionalMark /></FormLabel>
+                <FormLabel>{t('productForm.discount')} <OptionalMark /></FormLabel>
                 <FormControl>
                   <Input
                     type="number"
                     step="0.01"
                     min="0"
                     max="100"
-                    placeholder="Opcional"
+                    placeholder={t('productForm.optionalPlaceholder')}
                     value={field.value === undefined ? '' : field.value}
                     onChange={(e) =>
                       field.onChange(
@@ -253,13 +255,13 @@ export function ProductForm() {
             variant="outline"
             onClick={() => navigate('/products')}
           >
-            Cancelar
+            {t('common.cancel')}
           </Button>
           <Button type="submit" disabled={form.formState.isSubmitting}>
             {form.formState.isSubmitting && (
               <Loader2 className="size-4 animate-spin" />
             )}
-            Guardar producto
+            {t('productForm.submit')}
           </Button>
         </div>
       </form>
@@ -268,7 +270,8 @@ export function ProductForm() {
 }
 
 function OptionalMark() {
+  const { t } = useTranslation()
   return (
-    <span className="ml-1 text-xs font-normal text-muted-foreground">(opcional)</span>
+    <span className="ml-1 text-xs font-normal text-muted-foreground">{t('common.optional')}</span>
   )
 }

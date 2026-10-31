@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { Eye, EyeOff, Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
+import { useTranslation } from 'react-i18next'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -20,6 +21,7 @@ import { DUPLICATE_EMAIL_MESSAGE } from '@/stores/use-account-store'
 import { useRegister } from '@/presentation/hooks/use-register'
 
 export function RegisterForm() {
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const { mutateAsync, isPending } = useRegister()
   const [showPassword, setShowPassword] = useState(false)
@@ -38,16 +40,16 @@ export function RegisterForm() {
   const onSubmit = form.handleSubmit(async ({ email, password, companyName }) => {
     try {
       const account = await mutateAsync({ email, password, companyName })
-      toast.success('Cuenta creada', {
-        description: `Bienvenido, ${account.companyName}.`,
+      toast.success(t('register.success'), {
+        description: t('register.successDescription', { company: account.companyName }),
       })
       navigate('/')
     } catch (error) {
-      const message = error instanceof Error ? error.message : 'Error inesperado'
+      const message = error instanceof Error ? error.message : t('register.unexpectedError')
       if (message === DUPLICATE_EMAIL_MESSAGE) {
         form.setError('email', { message })
       } else {
-        toast.error('No se pudo crear la cuenta', { description: message })
+        toast.error(t('register.failure'), { description: message })
       }
     }
   })
@@ -60,9 +62,9 @@ export function RegisterForm() {
           name="companyName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Nombre de la empresa</FormLabel>
+              <FormLabel>{t('register.companyName')}</FormLabel>
               <FormControl>
-                <Input placeholder="Ej. Acme S.A.S." autoComplete="organization" {...field} />
+                <Input placeholder={t('register.companyNamePlaceholder')} autoComplete="organization" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -73,11 +75,11 @@ export function RegisterForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Correo electrónico</FormLabel>
+              <FormLabel>{t('register.email')}</FormLabel>
               <FormControl>
                 <Input
                   type="email"
-                  placeholder="nombre@empresa.com"
+                  placeholder={t('register.emailPlaceholder')}
                   autoComplete="email"
                   {...field}
                 />
@@ -91,7 +93,7 @@ export function RegisterForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Contraseña</FormLabel>
+              <FormLabel>{t('register.password')}</FormLabel>
               <div className="relative">
                 <FormControl>
                   <Input
@@ -107,7 +109,7 @@ export function RegisterForm() {
                   size="icon"
                   className="absolute top-0 right-0 h-full"
                   onClick={() => setShowPassword((v) => !v)}
-                  aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
+                  aria-label={t(showPassword ? 'register.hidePassword' : 'register.showPassword')}
                 >
                   {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
                 </Button>
@@ -121,7 +123,7 @@ export function RegisterForm() {
           name="confirmPassword"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Confirmar contraseña</FormLabel>
+              <FormLabel>{t('register.confirmPassword')}</FormLabel>
               <FormControl>
                 <Input
                   type={showPassword ? 'text' : 'password'}
@@ -134,11 +136,11 @@ export function RegisterForm() {
           )}
         />
         <p className="text-xs text-muted-foreground">
-          Mínimo 8 caracteres, con mayúscula, minúscula y número.
+          {t('register.passwordHint')}
         </p>
         <Button type="submit" className="w-full" disabled={isPending}>
           {isPending && <Loader2 className="size-4 animate-spin" />}
-          Crear cuenta
+          {t('register.submit')}
         </Button>
       </form>
     </Form>

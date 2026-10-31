@@ -1,5 +1,6 @@
 import { Home, Package, Settings } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
+import { useTranslation } from 'react-i18next'
 import { SidebarNavLink } from './sidebar-nav-link'
 
 interface SidebarContentProps {
@@ -7,19 +8,20 @@ interface SidebarContentProps {
 }
 
 export function SidebarContent({ onNavigate }: SidebarContentProps) {
+  const { t } = useTranslation()
   return (
     <nav className="flex h-full flex-col gap-1 p-4">
       <p className="px-3 pb-2 pt-1 text-xs font-medium text-muted-foreground">
-        Navegación
+        {t('nav.section')}
       </p>
       <ul className="flex flex-col gap-1">
         <li>
-          <SidebarNavLink to="/" label="Inicio" icon={Home} onNavigate={onNavigate} />
+          <SidebarNavLink to="/" label={t('nav.home')} icon={Home} onNavigate={onNavigate} />
         </li>
         <li>
           <SidebarNavLink
             to="/products"
-            label="Productos"
+            label={t('nav.products')}
             icon={Package}
             onNavigate={onNavigate}
           />
@@ -27,7 +29,7 @@ export function SidebarContent({ onNavigate }: SidebarContentProps) {
         <li>
           <SidebarNavLink
             to="/settings"
-            label="Configuración"
+            label={t('nav.settings')}
             icon={Settings}
             onNavigate={onNavigate}
           />

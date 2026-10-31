@@ -1,9 +1,12 @@
 import { Hexagon, Menu } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useSidebarStore } from '@/stores/use-sidebar-store'
+import { useTranslation } from 'react-i18next'
+import { LanguageSwitcher } from '@/presentation/components/language-switcher/language-switcher'
 import { ThemeToggle } from './theme-toggle'
 
 export function Navbar() {
+  const { t } = useTranslation()
   const toggle = useSidebarStore((s) => s.toggle)
 
   return (
@@ -14,17 +17,18 @@ export function Navbar() {
           size="icon"
           className="md:hidden"
           onClick={toggle}
-          aria-label="Abrir menú lateral"
+          aria-label={t('nav.openMenu')}
         >
           <Menu />
         </Button>
 
         <div className="flex items-center gap-2 font-semibold">
           <Hexagon className="size-5 text-primary" />
-          <span className="text-base">dona-front</span>
+          <span className="text-base">{t('common.appName')}</span>
         </div>
 
         <div className="ml-auto flex items-center gap-1">
+          <LanguageSwitcher />
           <ThemeToggle />
         </div>
       </div>

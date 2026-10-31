@@ -1,17 +1,18 @@
 import { z } from 'zod'
+// Los mensajes son claves i18n; se traducen en FormMessage
 import { TAX_CATEGORY_CODES, UNIT_OF_MEASURE_CODES } from './product.constants'
 
 // Requerido: empty input llega como NaN desde el form boundary
 const unitPrice = z
   .number()
-  .refine((v) => !Number.isNaN(v), { message: 'El precio unitario es requerido' })
-  .refine((v) => v > 0, { message: 'El precio unitario debe ser mayor a 0' })
+  .refine((v) => !Number.isNaN(v), { message: 'validation.unitPriceRequired' })
+  .refine((v) => v > 0, { message: 'validation.unitPricePositive' })
 
 // Opcional: 0-100%
 const discount = z
   .number()
-  .min(0, { message: 'El descuento no puede ser negativo' })
-  .max(100, { message: 'El descuento no puede superar 100%' })
+  .min(0, { message: 'validation.discountMin' })
+  .max(100, { message: 'validation.discountMax' })
   .optional()
 
 // Opcional: 4-8 dígitos UNSPSC
@@ -19,18 +20,18 @@ const unspscCode = z
   .string()
   .optional()
   .refine((v) => !v || /^\d{4,8}$/.test(v), {
-    message: 'El código UNSPSC debe tener entre 4 y 8 dígitos',
+    message: 'validation.unspscFormat',
   })
 
 export const productSchema = z.object({
-  code: z.string().trim().min(1, { message: 'El código del producto es requerido' }),
-  description: z.string().trim().min(1, { message: 'La descripción es requerida' }),
+  code: z.string().trim().min(1, { message: 'validation.productCodeRequired' }),
+  description: z.string().trim().min(1, { message: 'validation.descriptionRequired' }),
   unitPrice,
   unitOfMeasure: z.enum(UNIT_OF_MEASURE_CODES, {
-    message: 'Seleccione una unidad de medida',
+    message: 'validation.unitOfMeasureRequired',
   }),
   taxCategory: z.enum(TAX_CATEGORY_CODES, {
-    message: 'Seleccione una categoría tributaria',
+    message: 'validation.taxCategoryRequired',
   }),
   standardCode: z.string().trim().optional(),
   brand: z.string().trim().optional(),

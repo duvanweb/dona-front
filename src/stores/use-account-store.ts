@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import type { Account, RegisterInput } from '@/domain/auth/account.types'
 
-export const DUPLICATE_EMAIL_MESSAGE = 'Ya existe una cuenta con este correo'
+export const DUPLICATE_EMAIL_MESSAGE = 'register.errors.duplicateEmail' // clave i18n
 
 interface AccountState {
   accounts: Account[]

@@ -1,9 +1,11 @@
 import { useEffect } from 'react'
 import { Sheet, SheetContent, SheetTitle } from '@/components/ui/sheet'
+import { useTranslation } from 'react-i18next'
 import { useSidebarStore } from '@/stores/use-sidebar-store'
 import { SidebarContent } from './sidebar-content'
 
 export function Sidebar() {
+  const { t } = useTranslation()
   const open = useSidebarStore((s) => s.open)
   const setOpen = useSidebarStore((s) => s.setOpen)
   const close = useSidebarStore((s) => s.close)
@@ -28,7 +30,7 @@ export function Sidebar() {
       {/* Mobile: left Sheet drawer (no-op when closed) */}
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetContent side="left" className="w-72 bg-sidebar p-0">
-          <SheetTitle className="sr-only">Menú lateral</SheetTitle>
+          <SheetTitle className="sr-only">{t('nav.sideMenu')}</SheetTitle>
           <SidebarContent onNavigate={close} />
         </SheetContent>
       </Sheet>

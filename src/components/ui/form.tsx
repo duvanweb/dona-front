@@ -2,6 +2,8 @@ import * as React from "react"
 import { cn } from "cn"
 import type { Label as LabelPrimitive } from "radix-ui"
 import { Slot } from "radix-ui"
+import type { ParseKeys } from "i18next"
+import { useTranslation } from "react-i18next"
 import {
   Controller,
   FormProvider,
@@ -135,7 +137,14 @@ function FormDescription({ className, ...props }: React.ComponentProps<"p">) {
 
 function FormMessage({ className, ...props }: React.ComponentProps<"p">) {
   const { error, formMessageId } = useFormField()
-  const body = error ? String(error?.message ?? "") : props.children
+  const { t, i18n } = useTranslation()
+  // Los schemas devuelven claves i18n; si no es clave se muestra tal cual
+  const raw = error ? String(error?.message ?? "") : ""
+  const body = error
+    ? i18n.exists(raw)
+      ? t(raw as ParseKeys)
+      : raw
+    : props.children
 
   if (!body) {
     return null

@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { useSidebarStore } from '@/stores/use-sidebar-store'
 import { useTranslation } from 'react-i18next'
 import { LanguageSwitcher } from '@/presentation/components/language-switcher/language-switcher'
+import { UserMenu } from '@/presentation/components/user-menu/user-menu'
 import { ThemeToggle } from './theme-toggle'
 
 export function Navbar() {
@@ -30,6 +31,7 @@ export function Navbar() {
         <div className="ml-auto flex items-center gap-1">
           <LanguageSwitcher />
           <ThemeToggle />
+          <UserMenu />
         </div>
       </div>
     </header>

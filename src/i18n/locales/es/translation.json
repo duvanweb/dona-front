@@ -12,7 +12,8 @@
     "home": "Inicio",
     "products": "Productos",
     "settings": "Configuración",
-    "sideMenu": "Menú lateral"
+    "sideMenu": "Menú lateral",
+    "logout": "Cerrar sesión"
   },
   "theme": {
     "toggle": "Cambiar tema"
@@ -91,12 +92,13 @@
     "passwordHint": "Mínimo 8 caracteres, con mayúscula, minúscula y número.",
     "submit": "Crear cuenta",
     "success": "Cuenta creada",
-    "successDescription": "Bienvenido, {{company}}.",
     "failure": "No se pudo crear la cuenta",
     "unexpectedError": "Error inesperado",
     "errors": {
       "duplicateEmail": "Ya existe una cuenta con este correo"
-    }
+    },
+    "storeCodeNotice": "Bienvenido, {{company}}. Su código de tienda es {{storeCode}} (copiado al portapapeles). Lo necesitará para iniciar sesión.",
+    "haveAccount": "¿Ya tiene cuenta?"
   },
   "validation": {
     "productCodeRequired": "El código del producto es requerido",
@@ -115,7 +117,10 @@
     "passwordLowercase": "Debe incluir al menos una letra minúscula",
     "passwordNumber": "Debe incluir al menos un número",
     "confirmPasswordRequired": "Confirme la contraseña",
-    "passwordsMismatch": "Las contraseñas no coinciden"
+    "passwordsMismatch": "Las contraseñas no coinciden",
+    "storeCodeRequired": "El código de tienda es requerido",
+    "passwordRequired": "La contraseña es requerida",
+    "resetCodeFormat": "El código debe tener 6 dígitos"
   },
   "dian": {
     "units": {
@@ -141,5 +146,34 @@
       "04": "No responsable de IVA (excluido)",
       "05": "No gravado con IVA"
     }
+  },
+  "auth": {
+    "storeCode": "Código de tienda",
+    "storeCodePlaceholder": "Ej. ACMESA-7K3P",
+    "errors": {
+      "invalidCredentials": "Código de tienda, correo o contraseña incorrectos",
+      "invalidResetCode": "El código es inválido o ha expirado"
+    }
+  },
+  "login": {
+    "title": "Iniciar sesión",
+    "subtitle": "Ingrese el código de su tienda y sus credenciales.",
+    "submit": "Iniciar sesión",
+    "forgotPassword": "¿Olvidó su contraseña?",
+    "noAccount": "¿No tiene cuenta?"
+  },
+  "forgotPassword": {
+    "title": "Recuperar contraseña",
+    "subtitle": "Le enviaremos un código de 6 dígitos para restablecer su contraseña.",
+    "sendCode": "Enviar código",
+    "sent": "Si la cuenta existe, enviamos un código a su correo.",
+    "demoCode": "[Demo] Su código es {{code}}",
+    "codeSentTo": "Ingrese el código enviado a {{email}} (tienda {{storeCode}}) y su nueva contraseña.",
+    "code": "Código de verificación",
+    "newPassword": "Nueva contraseña",
+    "reset": "Restablecer contraseña",
+    "back": "Volver",
+    "success": "Contraseña actualizada. Inicie sesión con su nueva contraseña.",
+    "backToLogin": "Volver a iniciar sesión"
   }
 }

@@ -1,8 +1,7 @@
-import { useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import { Eye, EyeOff, Loader2 } from 'lucide-react'
+import { Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
 
@@ -18,13 +17,13 @@ import {
 } from '@/components/ui/form'
 import { registerSchema, type RegisterFormData } from '@/domain/auth/register.schema'
 import { DUPLICATE_EMAIL_MESSAGE } from '@/stores/use-account-store'
-import { useRegister } from '@/presentation/hooks/use-register'
+import { useRegister } from '@/presentation/hooks/use-auth'
+import { PasswordInput } from '@/presentation/components/password-input/password-input'
 
 export function RegisterForm() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const { mutateAsync, isPending } = useRegister()
-  const [showPassword, setShowPassword] = useState(false)
 
   const form = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
@@ -39,11 +38,18 @@ export function RegisterForm() {
 
   const onSubmit = form.handleSubmit(async ({ email, password, companyName }) => {
     try {
-      const account = await mutateAsync({ email, password, companyName })
+      const session = await mutateAsync({ email, password, companyName })
+      // El código de tienda es necesario para iniciar sesión: se muestra hasta cerrarlo
+      void navigator.clipboard?.writeText(session.storeCode).catch(() => {})
       toast.success(t('register.success'), {
-        description: t('register.successDescription', { company: account.companyName }),
+        description: t('register.storeCodeNotice', {
+          company: session.companyName,
+          storeCode: session.storeCode,
+        }),
+        duration: Infinity,
+        closeButton: true,
       })
-      navigate('/')
+      navigate('/', { replace: true })
     } catch (error) {
       const message = error instanceof Error ? error.message : t('register.unexpectedError')
       if (message === DUPLICATE_EMAIL_MESSAGE) {
@@ -94,26 +100,9 @@ export function RegisterForm() {
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t('register.password')}</FormLabel>
-              <div className="relative">
-                <FormControl>
-                  <Input
-                    type={showPassword ? 'text' : 'password'}
-                    autoComplete="new-password"
-                    className="pr-10"
-                    {...field}
-                  />
-                </FormControl>
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="icon"
-                  className="absolute top-0 right-0 h-full"
-                  onClick={() => setShowPassword((v) => !v)}
-                  aria-label={t(showPassword ? 'register.hidePassword' : 'register.showPassword')}
-                >
-                  {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
-                </Button>
-              </div>
+              <FormControl>
+                <PasswordInput autoComplete="new-password" {...field} />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}
@@ -125,11 +114,7 @@ export function RegisterForm() {
             <FormItem>
               <FormLabel>{t('register.confirmPassword')}</FormLabel>
               <FormControl>
-                <Input
-                  type={showPassword ? 'text' : 'password'}
-                  autoComplete="new-password"
-                  {...field}
-                />
+                <PasswordInput autoComplete="new-password" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

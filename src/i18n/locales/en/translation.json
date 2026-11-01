@@ -12,7 +12,8 @@
     "home": "Home",
     "products": "Products",
     "settings": "Settings",
-    "sideMenu": "Side menu"
+    "sideMenu": "Side menu",
+    "logout": "Sign out"
   },
   "theme": {
     "toggle": "Toggle theme"
@@ -91,12 +92,13 @@
     "passwordHint": "At least 8 characters, with uppercase, lowercase and a number.",
     "submit": "Create account",
     "success": "Account created",
-    "successDescription": "Welcome, {{company}}.",
     "failure": "Could not create the account",
     "unexpectedError": "Unexpected error",
     "errors": {
       "duplicateEmail": "An account with this email already exists"
-    }
+    },
+    "storeCodeNotice": "Welcome, {{company}}. Your store code is {{storeCode}} (copied to clipboard). You'll need it to sign in.",
+    "haveAccount": "Already have an account?"
   },
   "validation": {
     "productCodeRequired": "Product code is required",
@@ -115,7 +117,10 @@
     "passwordLowercase": "Must include at least one lowercase letter",
     "passwordNumber": "Must include at least one number",
     "confirmPasswordRequired": "Confirm your password",
-    "passwordsMismatch": "Passwords do not match"
+    "passwordsMismatch": "Passwords do not match",
+    "storeCodeRequired": "Store code is required",
+    "passwordRequired": "Password is required",
+    "resetCodeFormat": "The code must have 6 digits"
   },
   "dian": {
     "units": {
@@ -141,5 +146,34 @@
       "04": "Not VAT liable (excluded)",
       "05": "Not subject to VAT"
     }
+  },
+  "auth": {
+    "storeCode": "Store code",
+    "storeCodePlaceholder": "e.g. ACMESA-7K3P",
+    "errors": {
+      "invalidCredentials": "Incorrect store code, email or password",
+      "invalidResetCode": "The code is invalid or has expired"
+    }
+  },
+  "login": {
+    "title": "Sign in",
+    "subtitle": "Enter your store code and credentials.",
+    "submit": "Sign in",
+    "forgotPassword": "Forgot your password?",
+    "noAccount": "Don't have an account?"
+  },
+  "forgotPassword": {
+    "title": "Recover password",
+    "subtitle": "We'll send you a 6-digit code to reset your password.",
+    "sendCode": "Send code",
+    "sent": "If the account exists, we sent a code to your email.",
+    "demoCode": "[Demo] Your code is {{code}}",
+    "codeSentTo": "Enter the code sent to {{email}} (store {{storeCode}}) and your new password.",
+    "code": "Verification code",
+    "newPassword": "New password",
+    "reset": "Reset password",
+    "back": "Back",
+    "success": "Password updated. Sign in with your new password.",
+    "backToLogin": "Back to sign in"
   }
 }

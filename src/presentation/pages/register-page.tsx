@@ -1,33 +1,25 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { AuthCard } from '@/presentation/components/auth-card'
 import { RegisterForm } from '@/presentation/components/register-form/register-form'
-import { LanguageSwitcher } from '@/presentation/components/language-switcher/language-switcher'
 
 export function RegisterPage() {
   const { t } = useTranslation()
 
   return (
-    <div className="relative grid min-h-screen place-items-center bg-background p-4">
-      <div className="absolute top-4 right-4">
-        <LanguageSwitcher />
-      </div>
-      <Card className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle className="text-2xl">{t('register.title')}</CardTitle>
-          <CardDescription>
-            {t('register.subtitle')}
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <RegisterForm />
-        </CardContent>
-      </Card>
-    </div>
+    <AuthCard
+      title={t('register.title')}
+      description={t('register.subtitle')}
+      footer={
+        <span>
+          {t('register.haveAccount')}{' '}
+          <Link to="/login" className="font-medium text-primary underline-offset-4 hover:underline">
+            {t('login.submit')}
+          </Link>
+        </span>
+      }
+    >
+      <RegisterForm />
+    </AuthCard>
   )
 }
